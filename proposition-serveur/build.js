@@ -14,32 +14,37 @@ const num=(s,x,y,n)=>{s.addShape(pres.shapes.OVAL,{x,y,w:0.6,h:0.6,fill:{color:C
 pres.addSection({title:"Introduction"});
 let s=S("Sombre","Introduction");
 s.addText("Votre infrastructure informatique clé en main",{placeholder:"title"});
-s.addText("Serveur Proxmox + Windows Server pour une petite entreprise de 10 à 25 utilisateurs — et votre site web vitrine offert",{placeholder:"body"});
+s.addText("Serveur Proxmox + Windows Server (Active Directory, DNS, DHCP, GPO) pour une petite entreprise de 10 à 25 utilisateurs — et votre site web vitrine offert",{placeholder:"body"});
 
 s=S("Contenu","Introduction");
 s.addText("Ce que nous vous proposons",{placeholder:"title"});
-[["Un serveur unique, virtualisé","Proxmox VE héberge tous vos services sur une seule machine robuste"],["Une administration centralisée","Comptes, droits, postes et imprimantes gérés depuis Windows Server"],["Vos données protégées","Sauvegardes automatiques quotidiennes, onduleur, RAID"],["Votre vitrine sur le web","Un site professionnel offert pour présenter l'entreprise"]].forEach((t,i)=>{const x=0.6+(i%2)*6.15,y=1.6+Math.floor(i/2)*2.6;card(s,x,y,5.95,2.3);num(s,x+0.35,y+0.4,i+1);s.addText(t[0],{x:x+1.2,y:y+0.35,w:4.5,h:0.7,fontSize:20,bold:true,color:C.text2,isTextBox:true,margin:0});s.addText(t[1],{x:x+1.2,y:y+1.05,w:4.5,h:1.0,fontSize:15,color:C.text1,isTextBox:true,margin:0,valign:"top"});});
+[["Un serveur virtualisé","Proxmox VE (gratuit) héberge Windows Server et laisse de la place pour évoluer"],["Des comptes centralisés","Active Directory : un compte par employé, connexion sur n'importe quel poste"],["Des postes maîtrisés (GPO)","Mots de passe, mises à jour, restrictions et paramètres appliqués automatiquement"],["Une administration à distance","L'administrateur gère tout depuis n'importe où, en sécurité, via Tailscale"]].forEach((t,i)=>{const x=0.6+(i%2)*6.15,y=1.6+Math.floor(i/2)*2.6;card(s,x,y,5.95,2.3);num(s,x+0.35,y+0.4,i+1);s.addText(t[0],{x:x+1.2,y:y+0.35,w:4.5,h:0.7,fontSize:20,bold:true,color:C.text2,isTextBox:true,margin:0});s.addText(t[1],{x:x+1.2,y:y+1.05,w:4.5,h:1.0,fontSize:15,color:C.text1,isTextBox:true,margin:0,valign:"top"});});
 
 pres.addSection({title:"Architecture"});
 s=S("Contenu","Architecture");
-s.addText("Architecture : un hôte, quatre services",{placeholder:"title"});
-card(s,0.6,1.5,12.1,0.8,C.text2);
-s.addText("Hôte physique — Proxmox VE (hyperviseur)",{x:0.6,y:1.5,w:12.1,h:0.8,align:"center",valign:"middle",fontSize:20,bold:true,color:C.background1,isTextBox:true});
-[["VM 1 · Windows Server","Contrôleur de domaine\nActive Directory, DNS, DHCP, GPO"],["VM 2 · Windows Server","Serveur de fichiers\nPartages, droits, quotas, clichés"],["VM 3 · Windows Server","Bureau à distance (RDS)\nApplications métier, télétravail"],["Proxmox Backup Server","Sauvegarde\nCopies quotidiennes vers NAS"]].forEach((t,i)=>{const x=0.6+i*3.08;card(s,x,2.6,2.9,2.6);s.addText(t[0],{x:x+0.2,y:2.8,w:2.5,h:0.6,fontSize:14,bold:true,color:C.accent1,isTextBox:true,margin:0});s.addText(t[1],{x:x+0.2,y:3.45,w:2.5,h:1.6,fontSize:15,color:C.text1,isTextBox:true,margin:0,valign:"top"});});
-s.addText("Postes clients (10–25) · NAS de sauvegarde · Onduleur · Switch réseau",{x:0.6,y:5.5,w:12.1,h:0.6,align:"center",fontSize:16,italic:true,color:C.accent6,isTextBox:true});
+s.addText("Architecture : simple et évolutive",{placeholder:"title"});
+card(s,0.6,1.5,8.2,0.8,C.text2);
+s.addText("Serveur physique — Proxmox VE",{x:0.6,y:1.5,w:8.2,h:0.8,align:"center",valign:"middle",fontSize:20,bold:true,color:C.background1,isTextBox:true});
+card(s,0.6,2.6,8.2,3.0);
+s.addText("VM · Windows Server 2025",{x:0.9,y:2.8,w:7.6,h:0.5,fontSize:18,bold:true,color:C.accent1,isTextBox:true,margin:0});
+[["Active Directory","Comptes et groupes"],["DNS","Résolution des noms"],["DHCP","Adresses IP des postes"],["GPO","Règles sur les postes"]].forEach((t,i)=>{const x=0.9+i*1.95;card(s,x,3.5,1.8,1.8,C.background1);s.addText(t[0],{x:x+0.1,y:3.65,w:1.6,h:0.6,fontSize:15,bold:true,color:C.text2,isTextBox:true,margin:0,align:"center"});s.addText(t[1],{x:x+0.1,y:4.3,w:1.6,h:0.8,fontSize:13,color:C.text1,isTextBox:true,margin:0,align:"center"});});
+card(s,9.2,1.5,3.5,4.1,C.accent2);
+s.addText([{text:"Administrateur à distance",options:{bold:true,fontSize:18,breakLine:true}},{text:"Tunnel chiffré Tailscale vers le serveur : aucun port ouvert sur Internet",options:{fontSize:15}}],{x:9.45,y:1.8,w:3.0,h:3.5,color:C.background1,isTextBox:true,valign:"top",paraSpaceAfter:10});
+s.addText("Postes des employés joints au domaine (10–25)",{x:0.6,y:5.9,w:12.1,h:0.6,align:"center",fontSize:16,italic:true,color:C.accent6,isTextBox:true});
 
 pres.addSection({title:"Chiffrage"});
-const mat=[["Serveur tour (Dell T360 / HPE ML110) – Xeon 8 cœurs, 64 Go RAM, 2×960 Go SSD RAID1 + 2×4 To",3500000],["NAS de sauvegarde 2 baies + 2×4 To",650000],["Onduleur 1500 VA",450000],["Switch 24 ports gigabit + câblage / petit rack",350000]];
-const lic=[["Proxmox VE – souscription Community (1 an, 1 socket)",75000],["Windows Server 2025 Standard 16 cœurs ×2 (couvre 4 VM)",1400000],["CAL utilisateur Windows Server ×20 (≈30 000 l'unité)",600000],["CAL RDS utilisateur ×10 (≈85 000 l'unité)",850000]];
-const svc=[["Installation Proxmox, RAID, réseau",250000],["Déploiement AD/DNS/DHCP, GPO, intégration postes",400000],["Serveur de fichiers + RDS",300000],["Sauvegarde PBS + NAS, tests de restauration",150000],["Documentation + formation administrateur (1 jour)",100000]];
+const mat=[["Serveur tour (Dell T160 / HPE ML30) – Xeon, 32 Go RAM, 2×960 Go SSD en RAID1",2200000]];
+const lic=[["Proxmox VE – édition gratuite (sans abonnement)",0],["Windows Server 2025 Standard 16 cœurs ×1",700000],["CAL utilisateur Windows Server ×20 (≈30 000 l'unité)",600000],["Tailscale – offre gratuite (Personal, jusqu'à 3 utilisateurs)",0]];
+const svc=[["Installation Proxmox VE, RAID, réseau",150000],["Windows Server : Active Directory, DNS, DHCP",250000],["Stratégies de groupe (GPO) + intégration des postes au domaine",200000],["Accès distant administrateur via Tailscale",50000],["Documentation + prise en main administrateur",100000]];
 const sum=a=>a.reduce((p,c)=>p+c[1],0);
 function tab(title,rows,tot){s=S("Contenu","Chiffrage");s.addText(title,{placeholder:"title"});
  const r=rows.map(x=>[{text:x[0],options:{fontSize:15,color:C.text1}},{text:f(x[1]),options:{fontSize:15,align:"right",color:C.text1}}]);
  r.push([{text:"Sous-total",options:{bold:true,fontSize:16,color:C.background1,fill:{color:C.accent1}}},{text:f(tot),options:{bold:true,fontSize:16,align:"right",color:C.background1,fill:{color:C.accent1}}}]);
  s.addTable([[{text:"Poste",options:{bold:true,fontSize:15,color:C.text2,fill:{color:C.background2}}},{text:"Prix HT",options:{bold:true,fontSize:15,align:"right",color:C.text2,fill:{color:C.background2}}}],...r],{x:0.6,y:1.5,w:12.1,colW:[9.1,3.0],rowH:0.6,border:{type:"solid",pt:0.5,color:"C9D6D3"},valign:"middle"});return s;}
-tab("Matériel",mat,sum(mat));
+s=tab("Matériel",mat,sum(mat));
+s.addText("Onduleur fortement recommandé (≈ 300 000 FCFA). Sauvegarde et stockage : hors périmètre, à définir.",{x:0.6,y:3.6,w:12.1,h:0.6,fontSize:14,italic:true,color:C.accent6,isTextBox:true});
 s=tab("Licences logicielles",lic,sum(lic));
-s.addText("Windows Server Standard autorise 2 VM par licence 16 cœurs ; les CAL sont obligatoires pour chaque utilisateur accédant au domaine.",{x:0.6,y:5.6,w:12.1,h:0.7,fontSize:13,italic:true,color:C.accent6,isTextBox:true});
+s.addText("Les CAL sont obligatoires pour chaque utilisateur du domaine : leur nombre suit l'effectif réel.",{x:0.6,y:5.6,w:12.1,h:0.7,fontSize:13,italic:true,color:C.accent6,isTextBox:true});
 tab("Installation et mise en service",svc,sum(svc));
 
 const tot=sum(mat)+sum(lic)+sum(svc);
@@ -54,7 +59,7 @@ s.addText("TVA 18 % en sus : "+f(Math.round(tot*1.18))+" TTC",{x:7.1,y:5.75,w:5.
 
 s=S("Contenu","Chiffrage");
 s.addText("Coûts récurrents (optionnels)",{placeholder:"title"});
-[["75 000","FCFA / an","Souscription Proxmox (mises à jour stables)"],["75 000","FCFA / mois","Contrat de maintenance : supervision, mises à jour, assistance"],["≈ 30 000","FCFA / an","Nom de domaine + hébergement du site web"]].forEach((t,i)=>{const x=0.6+i*4.1;card(s,x,1.7,3.9,4.2);s.addText(t[0],{x:x+0.3,y:2.0,w:3.3,h:1.1,fontSize:44,bold:true,color:C.accent1,isTextBox:true,margin:0});s.addText(t[1],{x:x+0.3,y:3.1,w:3.3,h:0.5,fontSize:16,color:C.accent2,bold:true,isTextBox:true,margin:0});s.addText(t[2],{x:x+0.3,y:3.8,w:3.3,h:1.6,fontSize:15,color:C.text1,isTextBox:true,margin:0,valign:"top"});});
+[["0","FCFA","Proxmox VE et Tailscale : aucune licence annuelle"],["75 000","FCFA / mois","Contrat de maintenance : supervision, mises à jour, assistance"],["≈ 30 000","FCFA / an","Nom de domaine + hébergement du site web"]].forEach((t,i)=>{const x=0.6+i*4.1;card(s,x,1.7,3.9,4.2);s.addText(t[0],{x:x+0.3,y:2.0,w:3.3,h:1.1,fontSize:44,bold:true,color:C.accent1,isTextBox:true,margin:0});s.addText(t[1],{x:x+0.3,y:3.1,w:3.3,h:0.5,fontSize:16,color:C.accent2,bold:true,isTextBox:true,margin:0});s.addText(t[2],{x:x+0.3,y:3.8,w:3.3,h:1.6,fontSize:15,color:C.text1,isTextBox:true,margin:0,valign:"top"});});
 
 pres.addSection({title:"Bonus"});
 s=S("Contenu","Bonus");
@@ -66,5 +71,5 @@ s.addText([{text:"Site responsive (mobile, tablette, ordinateur)",options:{bulle
 pres.addSection({title:"Conclusion"});
 s=S("Sombre","Conclusion");
 s.addText("Prochaines étapes",{placeholder:"title"});
-s.addText("1. Visite technique et validation du nombre d'utilisateurs   2. Signature du devis   3. Livraison et installation en 2 à 3 semaines",{placeholder:"body"});
+s.addText("1. Valider le nombre d'utilisateurs et les GPO souhaitées   2. Définir plus tard sauvegarde et stockage   3. Signature et installation en 1 à 2 semaines",{placeholder:"body"});
 (async()=>{await pres.writeFile({fileName:"Proposition_Serveur_Proxmox_WindowsServer.pptx"});await applyTheme("Proposition_Serveur_Proxmox_WindowsServer.pptx",THEME);console.log(tot);})();
