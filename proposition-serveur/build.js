@@ -185,11 +185,11 @@ async function curveArt() {
   T(s, "PROPOSITION COMMERCIALE", { x: 1.35, y: 0.6, w: 5, h: 0.6, fontSize: 14, bold: true, color: C.accent1, charSpacing: 2, valign: "middle", ...A(1) });
   s.addText([{ text: "Reprenez le " }, { text: "contrôle", options: { color: C.accent1 } }, { text: " de votre parc informatique" }], { placeholder: "title" });
   s.addText("Un serveur, une administration centralisée, 15 postes sous contrôle — et votre site web offert.", { placeholder: "body" });
-  chip(s, 0.6, 5.55, 1.6, "Proxmox VE", 2); chip(s, 2.35, 5.55, 2.0, "Windows Server", 2); chip(s, 4.5, 5.55, 2.4, "Administration à distance", 2);
+  chip(s, 0.6, 5.55, 1.6, "Proxmox VE", 2); chip(s, 2.35, 5.55, 2.0, "Windows Server", 2); chip(s, 4.5, 5.55, 2.4, "Gestion à distance", 2);
   T(s, [{ text: "Armel Meledje", options: { bold: true, color: C.text1, breakLine: true } }, { text: "Développeur Senior · Ingénieur de conception", options: { color: C.accent6 } }], { x: 0.6, y: 6.35, w: 6.5, h: 0.65, fontSize: 14, valign: "top", ...A(3) });
   T(s, "Vendredi 30 octobre 2026", { x: 9.2, y: 6.6, w: 3.5, h: 0.4, fontSize: 14, color: C.accent6, align: "right", ...A(3) });
   s.addImage({ data: await coverArt(), x: 6.9, y: 0.75, w: 6.3, h: 5.04, ...A(1) });
-  s.addNotes("Accroche : aujourd'hui, l'informatique de l'entreprise fonctionne… jusqu'au jour où elle ne fonctionne plus. Cette proposition montre comment, avec un seul serveur, on passe d'un parc de postes isolés à un système géré, sécurisé et administré à distance — comme dans une grande entreprise, au budget d'une PME.");
+  s.addNotes("À dire : « Aujourd'hui, chaque ordinateur de l'entreprise vit sa vie de son côté. On vous propose de tout relier à un ordinateur central, le serveur, pour que tout soit organisé, protégé et facile à gérer. Et en cadeau, on vous fait votre site internet. »");
 
   // ===== 2. Le constat =====
   pres.addSection({ title: "Le constat" });
@@ -203,27 +203,27 @@ async function curveArt() {
     s.addShape(pres.shapes.OVAL, { x: px - 0.14, y: py - 0.14, w: 0.28, h: 0.28, fill: { color: i == 3 ? "E5484D" : C.accent1 }, line: { color: "FFFFFF", width: 3 }, ...A(2 + i) });
     T(s, txt, { x: i == 3 ? px - 5.1 : Math.max(0.6, px - 4.55), y: i == 3 ? py - 0.25 : i == 0 ? py - 0.85 : py - 0.6, w: i == 3 ? 4.8 : 4.3, h: 0.5, fontSize: 15, bold: i == 3, color: i == 3 ? "C62828" : C.text1, align: i == 0 ? "left" : "right", valign: i == 3 ? "middle" : "bottom", ...A(2 + i) });
   });
-  s.addNotes("Faire réagir le client : « Vous reconnaissez-vous à l'une de ces étapes ? » Avec 15 postes, l'entreprise est exactement au moment où le bricolage devient un risque. Chaque départ d'employé, chaque virus, chaque panne coûte du temps et de l'argent.");
+  s.addNotes("À dire : « Plus il y a d'ordinateurs et d'employés, plus c'est difficile de savoir qui fait quoi. Les mots de passe circulent, chacun installe ce qu'il veut, et le jour où un virus arrive ou qu'un ordinateur tombe en panne, tout s'arrête. Vous vous reconnaissez dans une de ces étapes ? »");
 
   // ===== 3. Mission =====
   s = S("Bleu", "Le constat");
   s.addText("Notre réponse", { placeholder: "kicker" });
-  s.addText("Un parc informatique géré, sécurisé et administrable à distance.", { placeholder: "title" });
+  s.addText("Des ordinateurs bien gérés, protégés et suivis à distance.", { placeholder: "title" });
   T(s, "Comme dans une grande entreprise — au budget d'une PME.", { x: 0.8, y: 5.0, w: 7.4, h: 0.6, fontSize: 20, italic: true, color: C.accent4, ...A(1) });
-  s.addNotes("Pause. Laisser la phrase s'installer. Le message : on ne vend pas du matériel, on vend de la tranquillité et du contrôle.");
+  s.addNotes("À dire : « Notre idée est simple : que vos ordinateurs soient bien rangés, protégés, et qu'on puisse vous aider à distance, sans se déplacer. » Faire une petite pause.");
 
   // ===== 4. Architecture =====
   pres.addSection({ title: "La solution" });
   s = S("Clair", "La solution");
   s.addText("La solution", { placeholder: "kicker" });
-  s.addText([{ text: "Une infrastructure " }, { text: "en couches", options: { color: C.accent1 } }, { text: ", simple et solide" }], { placeholder: "title" });
+  s.addText([{ text: "Comment ça marche, " }, { text: "étage par étage", options: { color: C.accent1 } }], { placeholder: "title" });
   const layers = [
-    { name: "Serveur physique", desc: "Une machine dédiée, fiable, dans vos locaux", icon: "FaServer" },
-    { name: "Proxmox VE", desc: "Virtualisation gratuite : le serveur peut évoluer", icon: "FaCubes" },
-    { name: "Windows Server", desc: "Le standard des entreprises pour gérer un réseau", icon: "FaWindows" },
-    { name: "AD · DNS · DHCP", desc: "Comptes, noms et adresses réseau centralisés", icon: "FaSitemap" },
-    { name: "Stratégies GPO", desc: "Règles de sécurité appliquées automatiquement", icon: "FaShieldAlt" },
-    { name: "15 postes", desc: "Chaque employé, son compte, son poste maîtrisé", icon: "FaDesktop", style: BLUE, iconColor: "FFFFFF" }];
+    { name: "Le serveur", desc: "Un ordinateur central, allumé en permanence, dans vos locaux", icon: "FaServer" },
+    { name: "Proxmox", desc: "Un logiciel gratuit qui permet d'ajouter des outils plus tard", icon: "FaCubes" },
+    { name: "Windows Server", desc: "Le « chef d'orchestre » qui gère tous les ordinateurs", icon: "FaWindows" },
+    { name: "Comptes employés", desc: "Un identifiant et un mot de passe personnels pour chacun", icon: "FaSitemap" },
+    { name: "Règles automatiques", desc: "Les mêmes réglages de sécurité sur tous les postes", icon: "FaShieldAlt" },
+    { name: "15 postes", desc: "Chaque employé travaille sur un poste bien réglé", icon: "FaDesktop", style: BLUE, iconColor: "FFFFFF" }];
   const st = await stackArt(layers);
   const ih = 5.5, sc = ih / st.H, iw = st.W * sc, ix = (13.333 - iw) / 2, iy = 1.45;
   s.addImage({ data: st.data, x: ix, y: iy, w: iw, h: ih, ...A(1) });
@@ -233,7 +233,7 @@ async function curveArt() {
     s.addShape(pres.shapes.LINE, { x: 3.2, y, w: ix + iw * 0.3 - 3.2, h: 0, line: { color: C.accent4, width: 1.25, dashType: "dash" }, ...A(7 - k) });
     T(s, l.desc, { x: ix + iw + 0.2, y: y - 0.25, w: 12.73 - (ix + iw + 0.2), h: 0.5, fontSize: 14, color: C.accent6, valign: "middle", ...A(7 - k) });
   });
-  s.addNotes("Expliquer couche par couche, de bas en haut : un serveur, Proxmox qui le rend évolutif, Windows Server qui est le standard mondial pour gérer un réseau d'entreprise, puis Active Directory et les GPO qui donnent le contrôle sur les 15 postes.");
+  s.addNotes("À dire, de bas en haut : « En bas, le serveur : c'est un ordinateur central qui reste allumé. Dessus, Proxmox, un logiciel gratuit qui nous laisse de la place pour ajouter d'autres outils plus tard. Ensuite Windows Server : c'est le chef d'orchestre. Il crée un compte pour chaque employé et applique automatiquement les mêmes règles sur tous les ordinateurs. Tout en haut : vos 15 postes, bien réglés. » Image utile : le serveur est comme le gardien d'un immeuble qui a toutes les clés.");
 
   // ===== 5. Avant / après =====
   s = S("Clair", "La solution");
@@ -241,7 +241,7 @@ async function curveArt() {
   s.addText([{ text: "Aujourd'hui vs " }, { text: "avec notre solution", options: { color: C.accent1 } }], { placeholder: "title" });
   const rows = [["Comptes", "Mots de passe partagés ou notés sur un papier", "Un compte personnel et sécurisé par employé"],
     ["Départ d'un employé", "Ses accès restent ouverts", "Compte désactivé en un clic"],
-    ["Logiciels", "Chacun installe ce qu'il veut", "Installations contrôlées par GPO"],
+    ["Logiciels", "Chacun installe ce qu'il veut", "Seuls les logiciels autorisés sont installés"],
     ["Mises à jour", "Faites… quand on y pense", "Appliquées automatiquement"],
     ["Dépannage", "Déplacement sur site, attente", "Intervention immédiate à distance"]];
   box(s, 3.3, 1.75, 4.5, 0.5, "E2E8F0", 1);
@@ -259,7 +259,7 @@ async function curveArt() {
     s.addImage({ data: okIc, x: 8.2, y: y + 0.2, w: 0.3, h: 0.3, ...A(2 + i) });
     T(s, r[2], { x: 8.65, y, w: 3.95, h: 0.7, fontSize: 14, bold: true, color: C.text1, valign: "middle", ...A(2 + i) });
   });
-  s.addNotes("C'est la slide qui vend. Insister sur le départ d'un employé : aujourd'hui, un ancien salarié peut encore accéder aux données. Demain : un clic et c'est fini.");
+  s.addNotes("À dire : « Voici ce qui change pour vous au quotidien. » Insister sur le départ d'un employé : « Aujourd'hui, un ancien employé peut encore ouvrir vos fichiers. Demain, on désactive son compte en un clic et c'est terminé. »");
 
   // ===== 6. Administration à distance =====
   s = S("Clair", "La solution");
@@ -270,7 +270,7 @@ async function curveArt() {
   T(s, "Depuis le bureau, la maison ou en déplacement", { x: 0.4, y: 4.55, w: 2.5, h: 0.7, fontSize: 13, color: C.accent6, align: "center", ...A(1) });
   s.addShape(pres.shapes.LINE, { x: 2.6, y: 3.25, w: 2.6, h: 0, line: { color: C.accent2, width: 3, dashType: "dash" }, ...A(2) });
   await badge(s, 3.55, 2.9, 0.7, "FaLock", 2, C.accent2);
-  T(s, "Tunnel chiffré Tailscale", { x: 2.6, y: 3.75, w: 2.6, h: 0.4, fontSize: 13, bold: true, color: C.accent2, align: "center", ...A(2) });
+  T(s, "Connexion sécurisée (Tailscale)", { x: 2.6, y: 3.75, w: 2.6, h: 0.4, fontSize: 13, bold: true, color: C.accent2, align: "center", ...A(2) });
   s.addImage({ data: await miniStack(["FaServer", "FaWindows"]), x: 5.1, y: 1.75, w: 2.9, h: 2.9, ...A(3) });
   T(s, "Serveur de l'entreprise", { x: 5.0, y: 4.55, w: 3.1, h: 0.4, fontSize: 16, bold: true, color: C.text2, align: "center", ...A(3) });
   s.addShape(pres.shapes.LINE, { x: 8.0, y: 3.25, w: 0.9, h: 0, line: { color: C.accent1, width: 3, endArrowType: "triangle" }, ...A(4) });
@@ -281,39 +281,39 @@ async function curveArt() {
     s.addImage({ data: desk, x: x + 0.15, y: y + 0.15, w: 0.3, h: 0.3, ...A(4) });
   }
   T(s, "15 postes des employés", { x: 9.1, y: 4.55, w: 3.5, h: 0.4, fontSize: 16, bold: true, color: C.text2, align: "center", ...A(4) });
-  [["0", "port ouvert sur Internet"], ["24h/24", "accès pour l'administrateur"], ["Minutes", "au lieu d'un déplacement"]].forEach((t, i) => {
+  [["Sécurisé", "connexion privée et protégée"], ["24h/24", "accès pour l'administrateur"], ["Minutes", "au lieu d'un déplacement"]].forEach((t, i) => {
     const x = 0.6 + i * 4.1;
     card(s, x, 5.45, 3.9, 1.25, 5);
     T(s, t[0], { x: x + 0.3, y: 5.55, w: 3.4, h: 0.6, fontSize: 28, bold: true, color: C.accent1, ...A(5) });
     T(s, t[1], { x: x + 0.3, y: 6.15, w: 3.4, h: 0.4, fontSize: 14, color: C.accent6, ...A(5) });
   });
-  s.addNotes("Tailscale crée un tunnel chiffré : l'administrateur gère tout le parc à distance, sans exposer le serveur sur Internet. Résultat : un problème réglé en quelques minutes, sans attendre un déplacement.");
+  s.addNotes("À dire : « L'administrateur peut s'occuper de vos ordinateurs depuis chez lui ou en déplacement, grâce à une connexion privée et protégée qui s'appelle Tailscale. C'est comme un couloir secret que lui seul peut emprunter. Un problème ? Il le règle en quelques minutes, sans venir sur place. »");
 
   // ===== 7. Pourquoi ces choix =====
   s = S("Clair", "La solution");
   s.addText("Pourquoi ces choix", { placeholder: "kicker" });
-  s.addText([{ text: "Des technologies " }, { text: "éprouvées", options: { color: C.accent1 } }, { text: ", sans abonnement caché" }], { placeholder: "title" });
+  s.addText([{ text: "Des technologies " }, { text: "fiables", options: { color: C.accent1 } }, { text: ", sans abonnement caché" }], { placeholder: "title" });
   s.addShape(pres.shapes.OVAL, { x: 0.9, y: 1.8, w: 4.8, h: 4.8, fill: { color: C.background2 }, line: { color: C.background2 }, ...A(1) });
   s.addImage({ data: await miniStack(["FaServer", "FaCubes", "FaWindows"]), x: 1.0, y: 1.9, w: 4.6, h: 4.6, ...A(1) });
-  const why = [["Évolutif", "Proxmox permet d'ajouter d'autres serveurs virtuels plus tard, sans racheter de matériel."],
-    ["Standard du marché", "Windows Server et Active Directory : la référence pour gérer les postes d'une entreprise."],
-    ["Économique", "Proxmox VE et Tailscale sont gratuits : aucun abonnement mensuel à prévoir."]];
+  const why = [["Évolutif", "Plus tard, on pourra ajouter de nouveaux outils sur le même serveur, sans racheter de machine."],
+    ["Standard du marché", "Windows Server est utilisé par de très nombreuses entreprises : c'est une valeur sûre."],
+    ["Économique", "Proxmox et Tailscale sont gratuits : rien à payer chaque mois."]];
   for (let i = 0; i < 3; i++) {
     const y = 1.95 + i * 1.6;
     await badge(s, 6.5, y, 0.6, "FaCheck", 2 + i, C.accent1);
     T(s, why[i][0], { x: 7.35, y: y - 0.05, w: 5.3, h: 0.5, fontSize: 20, bold: true, color: C.text2, ...A(2 + i) });
     T(s, why[i][1], { x: 7.35, y: y + 0.45, w: 5.3, h: 0.8, fontSize: 15, color: C.accent6, valign: "top", ...A(2 + i) });
   }
-  s.addNotes("Rassurer : ce ne sont pas des solutions exotiques. Et surtout, pas d'abonnement : une fois installé, le système appartient à l'entreprise.");
+  s.addNotes("À dire : « On a choisi des outils connus et fiables. Et surtout, pas d'abonnement : une fois installé, tout vous appartient. »");
 
   // ===== 8. Déploiement =====
   pres.addSection({ title: "Investissement" });
   s = S("Clair", "Investissement");
   s.addText("Le déploiement", { placeholder: "kicker" });
   s.addText([{ text: "Nous nous occupons de " }, { text: "tout", options: { color: C.accent1 } }], { placeholder: "title" });
-  const steps = [["FaServer", "Serveur", "Installation du serveur et de Proxmox VE"], ["FaWindows", "Windows Server", "Active Directory, DNS et DHCP"],
-    ["FaShieldAlt", "Sécurité", "GPO sur mesure : mots de passe, mises à jour, restrictions"], ["FaDesktop", "15 postes", "Intégration de chaque poste au domaine"],
-    ["FaUserShield", "Accès distant", "Tailscale configuré et prise en main"]];
+  const steps = [["FaServer", "Serveur", "Installation et préparation du serveur"], ["FaWindows", "Windows Server", "Création des comptes des employés"],
+    ["FaShieldAlt", "Sécurité", "Règles automatiques : mots de passe, mises à jour, interdictions"], ["FaDesktop", "15 postes", "Chaque ordinateur relié au serveur"],
+    ["FaUserShield", "Accès distant", "Connexion à distance pour l'administrateur"]];
   s.addShape(pres.shapes.LINE, { x: 1.4, y: 2.45, w: 10.5, h: 0, line: { color: C.accent4, width: 2, dashType: "dash" }, ...A(1) });
   for (let i = 0; i < 5; i++) {
     const x = 0.6 + i * 2.45;
@@ -326,7 +326,7 @@ async function curveArt() {
   box(s, 0.6, 5.85, 12.1, 0.85, C.text2, 7);
   T(s, [{ text: "Installation, configuration et déploiement complet : ", options: { color: C.accent4 } }, { text: F(INSTALL), options: { bold: true, color: C.background1 } }],
     { x: 0.9, y: 5.85, w: 11.5, h: 0.85, fontSize: 18, valign: "middle", ...A(7) });
-  s.addNotes("Le client n'a rien à gérer : du serveur jusqu'au dernier poste, tout est installé, configuré et testé. Le forfait couvre les 15 postes.");
+  s.addNotes("À dire : « Vous n'avez rien à faire : on installe le serveur, on crée les comptes, on règle la sécurité, on relie les 15 ordinateurs et on prépare l'accès à distance. Tout est compris dans ce prix. »");
 
   // ===== 9. Investissement =====
   s = S("Clair", "Investissement");
@@ -344,7 +344,7 @@ async function curveArt() {
   circ(5.2, 4.3, 2.6, C.accent3, 3, fmt(SERVEUR), "Serveur", C.background1, C.background1);
   circ(7.6, 4.75, 2.2, C.text2, 4, fmt(INSTALL), "Installation et 15 postes", C.background1, C.accent4);
   circ(10.9, 5.3, 1.7, C.background2, 5, fmt(LICENCES), "Licences ×2", C.text2, C.accent6);
-  s.addNotes("Annoncer le total puis ramener au coût par poste : environ 77 000 FCFA par poste, une seule fois. À comparer au coût d'une seule journée d'arrêt ou d'une perte de données.");
+  s.addNotes("À dire : « Le total est de 1 150 000 FCFA, payé une seule fois. Ramené à vos 15 ordinateurs, c'est environ 77 000 FCFA par poste. C'est souvent moins cher qu'une seule journée de travail perdue à cause d'une panne. »");
 
   // ===== 10. Maintenance =====
   s = S("Clair", "Investissement");
@@ -354,16 +354,16 @@ async function curveArt() {
   await badge(s, 0.95, 2.15, 0.9, "FaGift", 1, C.accent1);
   T(s, "3 mois", { x: 0.95, y: 3.25, w: 5.2, h: 1.0, fontSize: 60, bold: true, color: C.accent1, ...A(1) });
   T(s, "de maintenance offerts", { x: 0.95, y: 4.25, w: 5.2, h: 0.5, fontSize: 22, bold: true, color: C.text2, ...A(1) });
-  T(s, "Dès la mise en service : surveillance, corrections et ajustements des GPO, sans frais.", { x: 0.95, y: 4.85, w: 5.2, h: 1.2, fontSize: 15, color: C.accent6, valign: "top", ...A(1) });
+  T(s, "Dès le démarrage : on surveille, on corrige et on ajuste les réglages, sans frais.", { x: 0.95, y: 4.85, w: 5.2, h: 1.2, fontSize: 15, color: C.accent6, valign: "top", ...A(1) });
   s.addShape(pres.shapes.LINE, { x: 6.7, y: 4.1, w: 0.6, h: 0, line: { color: C.accent4, width: 2, endArrowType: "triangle" }, ...A(2) });
   box(s, 7.5, 1.8, 5.2, 4.6, C.text2, 2, soft());
   await badge(s, 7.85, 2.15, 0.9, "FaHeadset", 2, C.accent2);
   T(s, "Ensuite, en option", { x: 7.85, y: 3.25, w: 4.6, h: 0.4, fontSize: 16, color: C.accent4, ...A(2) });
   T(s, "à partir de 100 000 FCFA", { x: 7.85, y: 3.65, w: 4.6, h: 0.6, fontSize: 28, bold: true, color: C.background1, ...A(2) });
   T(s, "par trimestre · formule à définir ensemble", { x: 7.85, y: 4.25, w: 4.6, h: 0.4, fontSize: 15, color: C.accent4, ...A(2) });
-  T(s, [{ text: "Mises à jour et supervision du serveur", options: { bullet: true, breakLine: true } }, { text: "Gestion des comptes et des GPO", options: { bullet: true, breakLine: true } }, { text: "Assistance à distance", options: { bullet: true } }],
+  T(s, [{ text: "Mises à jour et surveillance du serveur", options: { bullet: true, breakLine: true } }, { text: "Ajout ou retrait d'employés, réglages", options: { bullet: true, breakLine: true } }, { text: "Assistance à distance", options: { bullet: true } }],
     { x: 7.85, y: 4.8, w: 4.6, h: 1.4, fontSize: 15, color: C.background1, paraSpaceAfter: 6, valign: "top", ...A(3) });
-  s.addNotes("Rassurer : le client n'est pas laissé seul. Trois mois offerts pour qu'il constate la valeur, puis une maintenance trimestrielle à partir de 100 000 FCFA, à discuter selon ses besoins.");
+  s.addNotes("À dire : « On ne vous laisse pas seul. Les 3 premiers mois, on surveille et on corrige gratuitement. Ensuite, si vous voulez, on continue avec un suivi à partir de 100 000 FCFA tous les 3 mois, à discuter ensemble. »");
 
   // ===== 11. Site offert =====
   s = S("Clair", "Investissement");
@@ -385,7 +385,7 @@ async function curveArt() {
   }
   T(s, [{ text: "Valeur " + F(SITE), options: { strike: "sngStrike" } }], { x: 7.3, y: 1.8, w: 5.4, h: 0.45, fontSize: 18, color: C.accent6, ...A(2) });
   T(s, "OFFERT", { x: 7.3, y: 2.2, w: 5.4, h: 0.9, fontSize: 54, bold: true, color: C.accent1, ...A(2) });
-  const feats = [["FaMobileAlt", "Adapté au mobile, à la tablette et à l'ordinateur"], ["FaFileAlt", "Accueil, À propos, Services, Réalisations, Contact"], ["FaWhatsapp", "Formulaire de contact, Google Maps et WhatsApp"], ["FaSearch", "Visible sur Google, sécurisé en HTTPS"]];
+  const feats = [["FaMobileAlt", "Adapté au mobile, à la tablette et à l'ordinateur"], ["FaFileAlt", "Accueil, À propos, Services, Réalisations, Contact"], ["FaWhatsapp", "Formulaire de contact, Google Maps et WhatsApp"], ["FaSearch", "Visible sur Google et sécurisé (cadenas)"]];
   for (let i = 0; i < feats.length; i++) {
     const y = 3.35 + i * 0.62;
     await badge(s, 7.3, y, 0.48, feats[i][0], 3 + i, C.background2, H.accent1);
@@ -394,16 +394,16 @@ async function curveArt() {
   box(s, 7.3, 5.95, 5.4, 0.75, C.text2, 7);
   T(s, [{ text: "Valeur totale " + F(TOTAL + SITE) + "  →  ", options: { color: C.accent4 } }, { text: "vous payez " + F(TOTAL), options: { bold: true, color: C.background1 } }],
     { x: 7.5, y: 5.95, w: 5.1, h: 0.75, fontSize: 15, valign: "middle", ...A(7) });
-  s.addNotes("Le geste commercial : le site vitrine, d'une valeur de 365 000 FCFA, est offert. L'entreprise gagne à la fois un outil interne solide et une vitrine pour attirer de nouveaux clients.");
+  s.addNotes("À dire : « Et pour vous remercier de votre confiance, on vous offre votre site internet, d'une valeur de 365 000 FCFA. Vos clients pourront vous trouver sur Google et vous contacter facilement. »");
 
   // ===== Option sécurité =====
   pres.addSection({ title: "Option sécurité" });
   s = S("Bleu", "Option sécurité");
   s.addText("Option · proposition séparée", { placeholder: "kicker" });
-  s.addText("Et si un ransomware frappait demain ?", { placeholder: "title" });
-  T(s, "Un poste infecté peut chiffrer les fichiers partagés et paralyser toute l'activité. Ajoutons une protection professionnelle.", { x: 0.8, y: 4.4, w: 7.2, h: 1.2, fontSize: 20, color: C.accent4, valign: "top", ...A(1) });
+  s.addText("Et si un virus bloquait tout demain ?", { placeholder: "title" });
+  T(s, "Un seul ordinateur infecté peut verrouiller tous les fichiers et demander une rançon. Un bon antivirus d'entreprise l'empêche.", { x: 0.8, y: 4.4, w: 7.2, h: 1.2, fontSize: 20, color: C.accent4, valign: "top", ...A(1) });
   await badge(s, 9.6, 2.3, 2.6, "FaShieldVirus", 2, C.background1, H.accent1);
-  s.addNotes("Transition : l'infrastructure organise le parc, mais il faut aussi le protéger. Cette option est indépendante de la proposition principale : le client peut la prendre maintenant ou plus tard.");
+  s.addNotes("À dire : « Organiser vos ordinateurs, c'est bien. Les protéger, c'est indispensable. Il existe des virus qui verrouillent tous vos fichiers et demandent de l'argent pour les débloquer. » C'est une option à part : le client peut la prendre maintenant ou plus tard.");
 
   s = S("Clair", "Option sécurité");
   s.addText("Option sécurité · comment ça fonctionne", { placeholder: "kicker" });
@@ -412,7 +412,7 @@ async function curveArt() {
   T(s, "Administrateur", { x: 0.3, y: 4.6, w: 2.0, h: 0.4, fontSize: 15, bold: true, color: C.text2, align: "center", ...A(1) });
   s.addShape(pres.shapes.LINE, { x: 2.0, y: 3.9, w: 0.8, h: 0, line: { color: C.accent2, width: 3, dashType: "dash" }, ...A(2) });
   box(s, 2.9, 3.1, 2.3, 1.6, C.text2, 2, soft());
-  T(s, [{ text: "Console de gestion", options: { bold: true, fontSize: 16, breakLine: true } }, { text: "dans le cloud (ou sur site)", options: { fontSize: 13 } }], { x: 3.05, y: 3.1, w: 2.0, h: 1.6, color: C.background1, align: "center", valign: "middle", ...A(2) });
+  T(s, [{ text: "Console de gestion", options: { bold: true, fontSize: 16, breakLine: true } }, { text: "accessible par Internet", options: { fontSize: 13 } }], { x: 3.05, y: 3.1, w: 2.0, h: 1.6, color: C.background1, align: "center", valign: "middle", ...A(2) });
   s.addShape(pres.shapes.LINE, { x: 5.3, y: 3.9, w: 0.9, h: 0, line: { color: C.accent1, width: 3, beginArrowType: "triangle", endArrowType: "triangle" }, ...A(3) });
   s.addShape(pres.shapes.OVAL, { x: 6.4, y: 1.75, w: 4.3, h: 4.3, fill: { color: C.background2 }, line: { color: C.accent4, width: 1.5, dashType: "dash" }, ...A(3) });
   await badge(s, 8.1, 3.45, 0.9, "FaUsers", 3);
@@ -422,21 +422,21 @@ async function curveArt() {
     await badge(s, cx - 0.35, cy - 0.35, 0.7, devs[i], 4, C.background1, H.accent1);
   }
   T(s, "Windows · macOS · Linux · serveurs · Android · iOS", { x: 6.0, y: 6.15, w: 5.1, h: 0.4, fontSize: 14, bold: true, color: C.text2, align: "center", ...A(4) });
-  ["Protection des terminaux", "Contrôles Web, appareils, applications", "Analyse des causes", "Campagnes de phishing simulées"].forEach((t, i) => {
+  ["Antivirus sur chaque appareil", "Sites et clés USB surveillés", "Comprendre d'où vient une attaque", "Entraînement contre les faux e-mails"].forEach((t, i) => {
     box(s, 11.0, 1.9 + i * 1.05, 1.75, 0.85, C.accent1, 5 + i);
     T(s, t, { x: 11.05, y: 1.9 + i * 1.05, w: 1.65, h: 0.85, fontSize: 12, bold: true, color: C.background1, align: "center", valign: "middle", ...A(5 + i) });
   });
-  s.addNotes("L'administrateur pilote la sécurité de tous les appareils depuis une seule console, à distance, comme pour le reste de l'infrastructure. Les postes, le serveur et les téléphones sont couverts.");
+  s.addNotes("À dire : « L'administrateur surveille la sécurité de tous vos appareils, ordinateurs et téléphones, depuis un seul écran. S'il y a un danger, il est prévenu tout de suite. »");
 
   s = S("Clair", "Option sécurité");
   s.addText("Option sécurité", { placeholder: "kicker" });
-  s.addText([{ text: "Kaspersky Next " }, { text: "EDR Foundations", options: { color: C.accent1 } }], { placeholder: "title" });
-  const sec = [["FaLock", "Protège vos données", "Anti-ransomware et anti-malware éprouvés"],
-    ["FaBug", "Bloque les malwares", "Connus et inconnus : fichiers, Web et e-mails"],
-    ["FaSyncAlt", "Applications à jour", "Détection automatique des logiciels obsolètes"],
-    ["FaUserLock", "Contrôle des usages", "Applications, Web et périphériques encadrés"],
-    ["FaProjectDiagram", "Attaques avancées", "Détectées, éliminées, avec analyse des causes"],
-    ["FaBell", "Alertes", "Activités suspectes et failles signalées"]];
+  s.addText([{ text: "Kaspersky : " }, { text: "l'antivirus des entreprises", options: { color: C.accent1 } }], { placeholder: "title" });
+  const sec = [["FaLock", "Protège vos données", "Contre les virus et les demandes de rançon"],
+    ["FaBug", "Bloque les virus", "Dans les fichiers, sur Internet et dans les e-mails"],
+    ["FaSyncAlt", "Applications à jour", "Signale les logiciels trop vieux, donc risqués"],
+    ["FaUserLock", "Contrôle des usages", "Sites dangereux et clés USB sous contrôle"],
+    ["FaProjectDiagram", "Attaques stoppées", "Et on comprend comment elles sont arrivées"],
+    ["FaBell", "Alertes", "L'administrateur est prévenu en cas de danger"]];
   for (let i = 0; i < 6; i++) {
     const x = 0.6 + (i % 2) * 3.85, y = 1.75 + Math.floor(i / 2) * 1.6;
     card(s, x, y, 3.65, 1.4, 1 + Math.floor(i / 2));
@@ -450,15 +450,15 @@ async function curveArt() {
   T(s, "Fichiers chiffrés, clients en attente, données perdues… La vraie question n'est pas le prix de la protection, mais celui d'une attaque.", { x: 8.8, y: 4.2, w: 3.6, h: 1.3, fontSize: 14, color: C.accent4, valign: "top", ...A(6) });
   s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: 8.8, y: 5.65, w: 3.6, h: 0.5, rectRadius: 0.25, fill: { color: C.accent2 }, line: { color: C.accent2 }, ...A(7) });
   T(s, "Parlons-en · démonstration sur demande", { x: 8.8, y: 5.65, w: 3.6, h: 0.5, fontSize: 13, bold: true, color: C.background1, align: "center", valign: "middle", ...A(7) });
-  T(s, "Option indépendante de l'infrastructure · offre adaptée à la taille de votre parc", { x: 0.6, y: 6.6, w: 12.1, h: 0.3, fontSize: 11, italic: true, color: C.accent6, ...A(7) });
-  s.addNotes("Ne pas annoncer de prix : poser la question du coût d'une journée d'arrêt et laisser le client y réfléchir. Proposer une démonstration ou un devis séparé s'il montre de l'intérêt.");
+  T(s, "Option séparée du reste · offre adaptée au nombre d'ordinateurs", { x: 0.6, y: 6.6, w: 12.1, h: 0.3, fontSize: 11, italic: true, color: C.accent6, ...A(7) });
+  s.addNotes("À dire : « Je ne vous donne pas de prix aujourd'hui. Posez-vous juste cette question : combien vous coûterait une journée où plus personne ne peut travailler ? » Proposer ensuite une démonstration.");
 
   // ===== 11. Appel à l'action =====
   pres.addSection({ title: "Conclusion" });
   s = S("Bleu", "Conclusion");
   s.addText("Prochaine étape", { placeholder: "kicker" });
   s.addText("Prêt à reprendre le contrôle ?", { placeholder: "title" });
-  T(s, "Votre infrastructure opérationnelle en 1 à 2 semaines.", { x: 0.8, y: 4.1, w: 7.0, h: 0.6, fontSize: 20, color: C.accent4, ...A(1) });
+  T(s, "Tout est prêt en 1 à 2 semaines.", { x: 0.8, y: 4.1, w: 7.0, h: 0.6, fontSize: 20, color: C.accent4, ...A(1) });
   const next = [["FaHandshake", "Validation de la proposition"], ["FaTruck", "Livraison et installation du serveur"], ["FaRocket", "Mise en service et site en ligne"]];
   for (let i = 0; i < 3; i++) {
     const y = 1.6 + i * 1.55;
@@ -466,7 +466,29 @@ async function curveArt() {
     await badge(s, 8.85, y + 0.25, 0.8, next[i][0], 2 + i, C.accent1);
     T(s, next[i][1], { x: 9.85, y, w: 2.7, h: 1.3, fontSize: 16, bold: true, color: C.text2, valign: "middle", ...A(2 + i) });
   }
-  s.addNotes("Conclure par une question fermée : « On planifie l'installation pour quelle semaine ? »");
+  s.addNotes("À dire : « Si cela vous convient, on peut commencer tout de suite. Quelle semaine vous arrange pour l'installation ? »");
+
+  // ===== Annexe : lexique =====
+  pres.addSection({ title: "Annexe" });
+  s = S("Clair", "Annexe");
+  s.addText("Annexe", { placeholder: "kicker" });
+  s.addText([{ text: "Les mots " }, { text: "expliqués simplement", options: { color: C.accent1 } }], { placeholder: "title" });
+  const lexique = [["FaServer", "Serveur", "Un ordinateur central, toujours allumé, qui organise tous les autres."],
+    ["FaCubes", "Proxmox", "Un logiciel gratuit installé sur le serveur, qui permet d'y ajouter des outils plus tard."],
+    ["FaWindows", "Windows Server", "Le « chef d'orchestre » : il gère les comptes et les règles de tous les ordinateurs."],
+    ["FaUsers", "Compte employé", "Un identifiant et un mot de passe personnels, valables sur tous les postes."],
+    ["FaShieldAlt", "Règles automatiques (GPO)", "Des réglages imposés à tous les postes : mots de passe, mises à jour, interdictions."],
+    ["FaUserShield", "Tailscale", "Une connexion privée et protégée pour que l'administrateur aide à distance."],
+    ["FaLock", "Rançongiciel", "Un virus qui verrouille vos fichiers et demande de l'argent pour les rendre."],
+    ["FaGlobe", "Site vitrine", "Votre site internet qui présente l'entreprise et permet de vous contacter."]];
+  for (let i = 0; i < lexique.length; i++) {
+    const x = 0.6 + (i % 2) * 6.15, y = 1.75 + Math.floor(i / 2) * 1.25;
+    card(s, x, y, 5.95, 1.1, 1 + Math.floor(i / 2));
+    await badge(s, x + 0.2, y + 0.22, 0.66, lexique[i][0], 1 + Math.floor(i / 2));
+    T(s, lexique[i][1], { x: x + 1.05, y: y + 0.1, w: 4.7, h: 0.4, fontSize: 15, bold: true, color: C.text2, ...A(1 + Math.floor(i / 2)) });
+    T(s, lexique[i][2], { x: x + 1.05, y: y + 0.48, w: 4.75, h: 0.55, fontSize: 13, color: C.accent6, valign: "top", ...A(1 + Math.floor(i / 2)) });
+  }
+  s.addNotes("Diapositive de secours : à montrer si quelqu'un demande ce que veut dire un mot. Lire simplement la définition.");
 
   await pres.writeFile({ fileName: OUT });
   await applyTheme(OUT, THEME);
