@@ -406,22 +406,47 @@ async function curveArt() {
   s.addNotes("Transition : l'infrastructure organise le parc, mais il faut aussi le protéger. Cette option est indépendante de la proposition principale : le client peut la prendre maintenant ou plus tard.");
 
   s = S("Clair", "Option sécurité");
+  s.addText("Option sécurité · comment ça fonctionne", { placeholder: "kicker" });
+  s.addText([{ text: "Une console, " }, { text: "tous les appareils protégés", options: { color: C.accent1 } }], { placeholder: "title" });
+  await badge(s, 0.7, 3.3, 1.2, "FaUserCog", 1, C.accent2);
+  T(s, "Administrateur", { x: 0.3, y: 4.6, w: 2.0, h: 0.4, fontSize: 15, bold: true, color: C.text2, align: "center", ...A(1) });
+  s.addShape(pres.shapes.LINE, { x: 2.0, y: 3.9, w: 0.8, h: 0, line: { color: C.accent2, width: 3, dashType: "dash" }, ...A(2) });
+  box(s, 2.9, 3.1, 2.3, 1.6, C.text2, 2, soft());
+  T(s, [{ text: "Console de gestion", options: { bold: true, fontSize: 16, breakLine: true } }, { text: "dans le cloud (ou sur site)", options: { fontSize: 13 } }], { x: 3.05, y: 3.1, w: 2.0, h: 1.6, color: C.background1, align: "center", valign: "middle", ...A(2) });
+  s.addShape(pres.shapes.LINE, { x: 5.3, y: 3.9, w: 0.9, h: 0, line: { color: C.accent1, width: 3, beginArrowType: "triangle", endArrowType: "triangle" }, ...A(3) });
+  s.addShape(pres.shapes.OVAL, { x: 6.4, y: 1.75, w: 4.3, h: 4.3, fill: { color: C.background2 }, line: { color: C.accent4, width: 1.5, dashType: "dash" }, ...A(3) });
+  await badge(s, 8.1, 3.45, 0.9, "FaUsers", 3);
+  const devs = ["FaWindows", "FaApple", "FaLinux", "FaServer", "FaAndroid", "FaMobileAlt"];
+  for (let i = 0; i < 6; i++) {
+    const ang = -Math.PI / 2 + i * Math.PI / 3, cx = 8.55 + 1.65 * Math.cos(ang), cy = 3.9 + 1.65 * Math.sin(ang);
+    await badge(s, cx - 0.35, cy - 0.35, 0.7, devs[i], 4, C.background1, H.accent1);
+  }
+  T(s, "Windows · macOS · Linux · serveurs · Android · iOS", { x: 6.0, y: 6.15, w: 5.1, h: 0.4, fontSize: 14, bold: true, color: C.text2, align: "center", ...A(4) });
+  ["Protection des terminaux", "Contrôles Web, appareils, applications", "Analyse des causes", "Campagnes de phishing simulées"].forEach((t, i) => {
+    box(s, 11.0, 1.9 + i * 1.05, 1.75, 0.85, C.accent1, 5 + i);
+    T(s, t, { x: 11.05, y: 1.9 + i * 1.05, w: 1.65, h: 0.85, fontSize: 12, bold: true, color: C.background1, align: "center", valign: "middle", ...A(5 + i) });
+  });
+  s.addNotes("L'administrateur pilote la sécurité de tous les appareils depuis une seule console, à distance, comme pour le reste de l'infrastructure. Les postes, le serveur et les téléphones sont couverts.");
+
+  s = S("Clair", "Option sécurité");
   s.addText("Option sécurité", { placeholder: "kicker" });
   s.addText([{ text: "Kaspersky Next " }, { text: "EDR Foundations", options: { color: C.accent1 } }], { placeholder: "title" });
-  const sec = [["FaLock", "Anti-ransomware", "Bloque le chiffrement malveillant des fichiers"],
-    ["FaBug", "Menaces avancées", "Détecte les programmes malveillants sans fichier et les menaces émergentes"],
-    ["FaProjectDiagram", "Analyse des causes (EDR)", "Montre comment une attaque est arrivée pour la stopper"],
-    ["FaCloud", "Console cloud", "Toute la sécurité pilotée à distance par l'administrateur"]];
-  for (let i = 0; i < 4; i++) {
-    const x = 0.6 + (i % 2) * 3.85, y = 1.8 + Math.floor(i / 2) * 2.45;
-    card(s, x, y, 3.65, 2.2, 1 + i);
-    await badge(s, x + 0.3, y + 0.3, 0.7, sec[i][0], 1 + i);
-    T(s, sec[i][1], { x: x + 0.3, y: y + 1.1, w: 3.1, h: 0.4, fontSize: 17, bold: true, color: C.text2, ...A(1 + i) });
-    T(s, sec[i][2], { x: x + 0.3, y: y + 1.5, w: 3.1, h: 0.65, fontSize: 13, color: C.accent6, valign: "top", ...A(1 + i) });
+  const sec = [["FaLock", "Protège vos données", "Anti-ransomware et anti-malware éprouvés"],
+    ["FaBug", "Bloque les malwares", "Connus et inconnus : fichiers, Web et e-mails"],
+    ["FaSyncAlt", "Applications à jour", "Détection automatique des logiciels obsolètes"],
+    ["FaUserLock", "Contrôle des usages", "Applications, Web et périphériques encadrés"],
+    ["FaProjectDiagram", "Attaques avancées", "Détectées, éliminées, avec analyse des causes"],
+    ["FaBell", "Alertes", "Activités suspectes et failles signalées"]];
+  for (let i = 0; i < 6; i++) {
+    const x = 0.6 + (i % 2) * 3.85, y = 1.75 + Math.floor(i / 2) * 1.6;
+    card(s, x, y, 3.65, 1.4, 1 + Math.floor(i / 2));
+    await badge(s, x + 0.25, y + 0.35, 0.7, sec[i][0], 1 + Math.floor(i / 2));
+    T(s, sec[i][1], { x: x + 1.15, y: y + 0.2, w: 2.35, h: 0.4, fontSize: 15, bold: true, color: C.text2, ...A(1 + Math.floor(i / 2)) });
+    T(s, sec[i][2], { x: x + 1.15, y: y + 0.6, w: 2.35, h: 0.7, fontSize: 13, color: C.accent6, valign: "top", ...A(1 + Math.floor(i / 2)) });
   }
   box(s, 8.5, 1.8, 4.2, 4.65, C.text2, 5, soft());
   T(s, "15 utilisateurs · 1 an", { x: 8.8, y: 2.05, w: 3.6, h: 0.4, fontSize: 15, color: C.accent4, ...A(5) });
-  T(s, "Postes, serveur et jusqu'à 30 mobiles", { x: 8.8, y: 2.45, w: 3.6, h: 0.4, fontSize: 13, color: C.accent4, ...A(5) });
+  T(s, "15 postes/serveurs et jusqu'à 30 mobiles", { x: 8.8, y: 2.45, w: 3.6, h: 0.4, fontSize: 13, color: C.accent4, ...A(5) });
   T(s, [{ text: "≈ " + F(EDR_STD), options: { strike: "sngStrike" } }], { x: 8.8, y: 3.05, w: 3.6, h: 0.4, fontSize: 15, color: C.accent3, ...A(6) });
   T(s, "≈ " + fmt(EDR), { x: 8.8, y: 3.4, w: 3.6, h: 0.8, fontSize: 40, bold: true, color: C.background1, ...A(6) });
   T(s, "FCFA HT / an · tarif promotionnel nouveaux clients", { x: 8.8, y: 4.2, w: 3.6, h: 0.6, fontSize: 13, color: C.accent4, valign: "top", ...A(6) });
