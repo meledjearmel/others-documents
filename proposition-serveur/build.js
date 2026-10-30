@@ -17,6 +17,8 @@ const H = THEME.colors;
 // ---------- Prix ----------
 const SERVEUR = 500000, LICENCES = 200000, INSTALL = 450000, SITE = 365000, POSTES = 15;
 const TOTAL = SERVEUR + LICENCES + INSTALL;
+// Option sécurité : Kaspersky Next EDR Foundations, 15 utilisateurs, 1 an (727,50 € HT promo / 862,50 € HT, 1 € = 655,957 FCFA)
+const EDR = 477000, EDR_STD = 566000;
 const fmt = n => n.toLocaleString('fr-FR').replace(/ | /g, ' ');
 const F = n => fmt(n) + ' FCFA';
 
@@ -393,6 +395,39 @@ async function curveArt() {
   T(s, [{ text: "Valeur totale " + F(TOTAL + SITE) + "  →  ", options: { color: C.accent4 } }, { text: "vous payez " + F(TOTAL), options: { bold: true, color: C.background1 } }],
     { x: 7.5, y: 5.95, w: 5.1, h: 0.75, fontSize: 15, valign: "middle", ...A(7) });
   s.addNotes("Le geste commercial : le site vitrine, d'une valeur de 365 000 FCFA, est offert. L'entreprise gagne à la fois un outil interne solide et une vitrine pour attirer de nouveaux clients.");
+
+  // ===== Option sécurité =====
+  pres.addSection({ title: "Option sécurité" });
+  s = S("Bleu", "Option sécurité");
+  s.addText("Option · proposition séparée", { placeholder: "kicker" });
+  s.addText("Et si un ransomware frappait demain ?", { placeholder: "title" });
+  T(s, "Un poste infecté peut chiffrer les fichiers partagés et paralyser toute l'activité. Ajoutons une protection professionnelle.", { x: 0.8, y: 4.4, w: 7.2, h: 1.2, fontSize: 20, color: C.accent4, valign: "top", ...A(1) });
+  await badge(s, 9.6, 2.3, 2.6, "FaShieldVirus", 2, C.background1, H.accent1);
+  s.addNotes("Transition : l'infrastructure organise le parc, mais il faut aussi le protéger. Cette option est indépendante de la proposition principale : le client peut la prendre maintenant ou plus tard.");
+
+  s = S("Clair", "Option sécurité");
+  s.addText("Option sécurité", { placeholder: "kicker" });
+  s.addText([{ text: "Kaspersky Next " }, { text: "EDR Foundations", options: { color: C.accent1 } }], { placeholder: "title" });
+  const sec = [["FaLock", "Anti-ransomware", "Bloque le chiffrement malveillant des fichiers"],
+    ["FaBug", "Menaces avancées", "Détecte les programmes malveillants sans fichier et les menaces émergentes"],
+    ["FaProjectDiagram", "Analyse des causes (EDR)", "Montre comment une attaque est arrivée pour la stopper"],
+    ["FaCloud", "Console cloud", "Toute la sécurité pilotée à distance par l'administrateur"]];
+  for (let i = 0; i < 4; i++) {
+    const x = 0.6 + (i % 2) * 3.85, y = 1.8 + Math.floor(i / 2) * 2.45;
+    card(s, x, y, 3.65, 2.2, 1 + i);
+    await badge(s, x + 0.3, y + 0.3, 0.7, sec[i][0], 1 + i);
+    T(s, sec[i][1], { x: x + 0.3, y: y + 1.1, w: 3.1, h: 0.4, fontSize: 17, bold: true, color: C.text2, ...A(1 + i) });
+    T(s, sec[i][2], { x: x + 0.3, y: y + 1.5, w: 3.1, h: 0.65, fontSize: 13, color: C.accent6, valign: "top", ...A(1 + i) });
+  }
+  box(s, 8.5, 1.8, 4.2, 4.65, C.text2, 5, soft());
+  T(s, "15 utilisateurs · 1 an", { x: 8.8, y: 2.05, w: 3.6, h: 0.4, fontSize: 15, color: C.accent4, ...A(5) });
+  T(s, "Postes, serveur et jusqu'à 30 mobiles", { x: 8.8, y: 2.45, w: 3.6, h: 0.4, fontSize: 13, color: C.accent4, ...A(5) });
+  T(s, [{ text: "≈ " + F(EDR_STD), options: { strike: "sngStrike" } }], { x: 8.8, y: 3.05, w: 3.6, h: 0.4, fontSize: 15, color: C.accent3, ...A(6) });
+  T(s, "≈ " + fmt(EDR), { x: 8.8, y: 3.4, w: 3.6, h: 0.8, fontSize: 40, bold: true, color: C.background1, ...A(6) });
+  T(s, "FCFA HT / an · tarif promotionnel nouveaux clients", { x: 8.8, y: 4.2, w: 3.6, h: 0.6, fontSize: 13, color: C.accent4, valign: "top", ...A(6) });
+  T(s, "≈ " + F(Math.round(EDR / 12 / 1000) * 1000) + " par mois pour protéger toute l'entreprise", { x: 8.8, y: 5.05, w: 3.6, h: 0.9, fontSize: 15, bold: true, color: C.background1, valign: "top", ...A(7) });
+  T(s, "Option indépendante de l'infrastructure · prix éditeur converti (1 € = 655,957 FCFA)", { x: 0.6, y: 6.6, w: 12.1, h: 0.3, fontSize: 11, italic: true, color: C.accent6, ...A(7) });
+  s.addNotes("Présenter comme une assurance : environ 40 000 FCFA par mois pour protéger 15 postes contre les ransomwares. Le coût d'une seule attaque (données perdues, jours d'arrêt) dépasse largement ce montant.");
 
   // ===== 11. Appel à l'action =====
   pres.addSection({ title: "Conclusion" });
