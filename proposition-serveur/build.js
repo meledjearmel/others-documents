@@ -17,8 +17,6 @@ const H = THEME.colors;
 // ---------- Prix ----------
 const SERVEUR = 500000, LICENCES = 200000, INSTALL = 450000, SITE = 365000, POSTES = 15;
 const TOTAL = SERVEUR + LICENCES + INSTALL;
-// Option sécurité : Kaspersky Next EDR Foundations, 15 utilisateurs, 1 an (727,50 € HT promo / 862,50 € HT, 1 € = 655,957 FCFA)
-const EDR = 477000, EDR_STD = 566000;
 const fmt = n => n.toLocaleString('fr-FR').replace(/ | /g, ' ');
 const F = n => fmt(n) + ' FCFA';
 
@@ -445,14 +443,13 @@ async function curveArt() {
     T(s, sec[i][2], { x: x + 1.15, y: y + 0.6, w: 2.35, h: 0.7, fontSize: 13, color: C.accent6, valign: "top", ...A(1 + Math.floor(i / 2)) });
   }
   box(s, 8.5, 1.8, 4.2, 4.65, C.text2, 5, soft());
-  T(s, "15 utilisateurs · 1 an", { x: 8.8, y: 2.05, w: 3.6, h: 0.4, fontSize: 15, color: C.accent4, ...A(5) });
-  T(s, "15 postes/serveurs et jusqu'à 30 mobiles", { x: 8.8, y: 2.45, w: 3.6, h: 0.4, fontSize: 13, color: C.accent4, ...A(5) });
-  T(s, [{ text: "≈ " + F(EDR_STD), options: { strike: "sngStrike" } }], { x: 8.8, y: 3.05, w: 3.6, h: 0.4, fontSize: 15, color: C.accent3, ...A(6) });
-  T(s, "≈ " + fmt(EDR), { x: 8.8, y: 3.4, w: 3.6, h: 0.8, fontSize: 40, bold: true, color: C.background1, ...A(6) });
-  T(s, "FCFA HT / an · tarif promotionnel nouveaux clients", { x: 8.8, y: 4.2, w: 3.6, h: 0.6, fontSize: 13, color: C.accent4, valign: "top", ...A(6) });
-  T(s, "≈ " + F(Math.round(EDR / 12 / 1000) * 1000) + " par mois pour protéger toute l'entreprise", { x: 8.8, y: 5.05, w: 3.6, h: 0.9, fontSize: 15, bold: true, color: C.background1, valign: "top", ...A(7) });
-  T(s, "Option indépendante de l'infrastructure · prix éditeur converti (1 € = 655,957 FCFA)", { x: 0.6, y: 6.6, w: 12.1, h: 0.3, fontSize: 11, italic: true, color: C.accent6, ...A(7) });
-  s.addNotes("Présenter comme une assurance : environ 40 000 FCFA par mois pour protéger 15 postes contre les ransomwares. Le coût d'une seule attaque (données perdues, jours d'arrêt) dépasse largement ce montant.");
+  await badge(s, 8.8, 2.1, 0.9, "FaQuestion", 5, C.accent2);
+  T(s, "Combien vous coûterait une journée d'arrêt ?", { x: 8.8, y: 3.15, w: 3.6, h: 1.0, fontSize: 22, bold: true, color: C.background1, valign: "top", ...A(5) });
+  T(s, "Fichiers chiffrés, clients en attente, données perdues… La vraie question n'est pas le prix de la protection, mais celui d'une attaque.", { x: 8.8, y: 4.2, w: 3.6, h: 1.3, fontSize: 14, color: C.accent4, valign: "top", ...A(6) });
+  s.addShape(pres.shapes.ROUNDED_RECTANGLE, { x: 8.8, y: 5.65, w: 3.6, h: 0.5, rectRadius: 0.25, fill: { color: C.accent2 }, line: { color: C.accent2 }, ...A(7) });
+  T(s, "Parlons-en · démonstration sur demande", { x: 8.8, y: 5.65, w: 3.6, h: 0.5, fontSize: 13, bold: true, color: C.background1, align: "center", valign: "middle", ...A(7) });
+  T(s, "Option indépendante de l'infrastructure · offre adaptée à la taille de votre parc", { x: 0.6, y: 6.6, w: 12.1, h: 0.3, fontSize: 11, italic: true, color: C.accent6, ...A(7) });
+  s.addNotes("Ne pas annoncer de prix : poser la question du coût d'une journée d'arrêt et laisser le client y réfléchir. Proposer une démonstration ou un devis séparé s'il montre de l'intérêt.");
 
   // ===== 11. Appel à l'action =====
   pres.addSection({ title: "Conclusion" });
