@@ -185,7 +185,9 @@ async function curveArt() {
   T(s, "PROPOSITION COMMERCIALE", { x: 1.35, y: 0.6, w: 5, h: 0.6, fontSize: 14, bold: true, color: C.accent1, charSpacing: 2, valign: "middle", ...A(1) });
   s.addText([{ text: "Reprenez le " }, { text: "contrôle", options: { color: C.accent1 } }, { text: " de votre parc informatique" }], { placeholder: "title" });
   s.addText("Un serveur, une administration centralisée, 15 postes sous contrôle — et votre site web offert.", { placeholder: "body" });
-  chip(s, 0.6, 5.75, 1.6, "Proxmox VE", 2); chip(s, 2.35, 5.75, 2.0, "Windows Server", 2); chip(s, 4.5, 5.75, 2.4, "Administration à distance", 2);
+  chip(s, 0.6, 5.55, 1.6, "Proxmox VE", 2); chip(s, 2.35, 5.55, 2.0, "Windows Server", 2); chip(s, 4.5, 5.55, 2.4, "Administration à distance", 2);
+  T(s, [{ text: "Armel Meledje", options: { bold: true, color: C.text1, breakLine: true } }, { text: "Développeur Senior · Ingénieur de conception", options: { color: C.accent6 } }], { x: 0.6, y: 6.35, w: 6.5, h: 0.65, fontSize: 14, valign: "top", ...A(3) });
+  T(s, "Vendredi 30 octobre 2026", { x: 9.2, y: 6.6, w: 3.5, h: 0.4, fontSize: 14, color: C.accent6, align: "right", ...A(3) });
   s.addImage({ data: await coverArt(), x: 6.9, y: 0.75, w: 6.3, h: 5.04, ...A(1) });
   s.addNotes("Accroche : aujourd'hui, l'informatique de l'entreprise fonctionne… jusqu'au jour où elle ne fonctionne plus. Cette proposition montre comment, avec un seul serveur, on passe d'un parc de postes isolés à un système géré, sécurisé et administré à distance — comme dans une grande entreprise, au budget d'une PME.");
 
